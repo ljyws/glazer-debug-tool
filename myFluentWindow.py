@@ -1,0 +1,157 @@
+# coding:utf-8
+from typing import Union
+import sys
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt, QSize, QRect
+from PyQt5.QtGui import QIcon, QPainter, QColor
+from PyQt5.QtWidgets import (
+    QWidget,
+    QHBoxLayout,
+    QVBoxLayout,
+    QLabel,
+    QApplication,
+    QPushButton,
+)
+
+from qfluentwidgets.common.config import qconfig
+from qfluentwidgets.common.icon import FluentIconBase
+from qfluentwidgets.common.router import qrouter
+from qfluentwidgets.common.style_sheet import (
+    FluentStyleSheet,
+    isDarkTheme,
+    setTheme,
+    Theme,
+)
+from qfluentwidgets.common.animation import BackgroundAnimationWidget
+from qfluentwidgets.components.widgets.frameless_window import FramelessWindow
+from qfluentwidgets.components.navigation import (
+    NavigationInterface,
+    NavigationBar,
+    NavigationItemPosition,
+    NavigationBarPushButton,
+    NavigationTreeWidget,
+)
+from qframelesswindow import TitleBar, TitleBarBase
+from qfluentwidgets.window.fluent_window import FluentWindowBase, FluentTitleBar
+from qfluentwidgets import (
+    BodyLabel,
+    CardWidget,
+    ComboBox,
+    IconWidget,
+    LargeTitleLabel,
+    PushButton,
+    RadioButton,
+    StrongBodyLabel,
+    SubtitleLabel,
+    TransparentToolButton,
+    TogglePushButton,
+)
+
+
+class myFluentWindow(FluentWindowBase):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setTitleBar(FluentTitleBar(self))
+
+        self.navigationInterface = NavigationInterface(self, showReturnButton=False)
+
+        self.mySerialLayout = QVBoxLayout()
+        self.mySerialLayout.addWidget(self.navigationInterface)
+
+        spacerItem11 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        self.mySerialLayout.addItem(spacerItem11)
+
+        _translate = QtCore.QCoreApplication.translate
+        self.gridLayout_serial = QtWidgets.QGridLayout()
+        self.gridLayout_serial.setObjectName("gridLayout_serial")
+        self.pushButtonSerial = PushButton()  # TogglePushButton PushButton
+        self.pushButtonSerial.setObjectName("pushButtonSerial")
+        self.gridLayout_serial.addWidget(self.pushButtonSerial, 1, 1, 1, 1)
+        self.pushButtonSerial.setText(_translate("SeetingsInterface", "打开"))
+
+        self.comboBoxSerial = ComboBox()
+        self.comboBoxSerial.setObjectName("comboBoxSerial")
+        self.gridLayout_serial.addWidget(self.comboBoxSerial, 1, 0, 1, 1)
+        self.mySerialLayout.addLayout(self.gridLayout_serial)
+
+        spacerItem12 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.mySerialLayout.addItem(spacerItem12)
+
+        self.hBoxLayout.addLayout(self.mySerialLayout)
+
+        self.widgetLayout = QHBoxLayout()
+        self.hBoxLayout.addLayout(self.widgetLayout)
+        self.hBoxLayout.setStretchFactor(self.widgetLayout, 1)
+
+        self.widgetLayout.addWidget(self.stackedWidget)
+        self.widgetLayout.setContentsMargins(0, 48, 0, 0)
+
+        self.navigationInterface.displayModeChanged.connect(self.titleBar.raise_)
+        self.titleBar.raise_()
+
+    def addSubInterface(
+        self,
+        interface: QWidget,
+        icon: Union[FluentIconBase, QIcon, str],
+        text: str,
+        position=NavigationItemPosition.TOP,
+        parent=None,
+        isTransparent=False,
+    ) -> NavigationTreeWidget:
+        """add sub interface, the object name of `interface` should be set already
+        before calling this method
+
+        Parameters
+        ----------
+        interface: QWidget
+            the subinterface to be added
+
+        icon: FluentIconBase | QIcon | str
+            the icon of navigation item
+
+        text: str
+            the text of navigation item
+
+        position: NavigationItemPosition
+            the position of navigation item
+
+        parent: QWidget
+            the parent of navigation item
+
+        isTransparent: bool
+            whether to use transparent background
+        """
+        if not interface.objectName():
+            raise ValueError("The object name of `interface` can't be empty string.")
+        if parent and not parent.objectName():
+            raise ValueError("The object name of `parent` can't be empty string.")
+
+        interface.setProperty("isStackedTransparent", isTransparent)
+        self.stackedWidget.addWidget(interface)
+
+        # add navigation item
+        routeKey = interface.objectName()
+        item = self.navigationInterface.addItem(
+            routeKey=routeKey,
+            icon=icon,
+            text=text,
+            onClick=lambda: self.switchTo(interface),
+            position=position,
+            tooltip=text,
+            parentRouteKey=parent.objectName() if parent else None,
+        )
+
+        # initialize selected item
+        if self.stackedWidget.count() == 1:
+            self.stackedWidget.currentChanged.connect(self._onCurrentInterfaceChanged)
+            self.navigationInterface.setCurrentItem(routeKey)
+            qrouter.setDefaultRouteKey(self.stackedWidget, routeKey)
+
+        self._updateStackedBackground()
+
+        return item
+
+    def resizeEvent(self, e):
+        self.titleBar.move(46, 0)
+        self.titleBar.resize(self.width() - 46, self.titleBar.height())
