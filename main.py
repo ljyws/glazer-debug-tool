@@ -32,7 +32,7 @@ class SerialThread(QThread):
         self.glazer_serial.parity = serial.PARITY_NONE
         self.glazer_serial.stopbits = serial.STOPBITS_ONE
 
-        self.tx_data_ = bytearray(47)
+        self.tx_data_ = bytearray(57)
 
 
     def run(self):
@@ -199,7 +199,7 @@ class MainWindow(myFluentWindow):
 
     def update_send_data_(self):
         
-        _data = bytearray(47)
+        _data = bytearray(57)
 
         _data[0]  = 0xAA
         _data[1]  = 0xBB
@@ -245,9 +245,19 @@ class MainWindow(myFluentWindow):
         _data[41] = int(self.controller_interface.send_ice_door_close_door_)
         _data[42] = 0xC3
         _data[43] = int(self.controller_interface.send_put_down_ice_flag_)
-        _data[44] = 0xCC
-        _data[45] = 0xDD
-        _data[46] = self.tx_data_crc_.crc8_checksum_get(_data[:46])
+        _data[44] = 0xC4
+        _data[45] = int(self.controller_interface.send_ref_valve_reset_flag_)
+        _data[46] = 0xC5
+        _data[47] = int(self.controller_interface.send_ref_valve_to_ice_make_)
+        _data[48] = 0xC6
+        _data[49] = int(self.controller_interface.send_ref_valve_to_store_)
+        _data[50] = 0xC7
+        _data[51] = int(self.controller_interface.send_store_fan_en_)
+        _data[52] = 0xC8
+        _data[53] = int(self.controller_interface.send_store_heating_en_)
+        _data[54] = 0xCC
+        _data[55] = 0xDD
+        _data[56] = self.tx_data_crc_.crc8_checksum_get(_data[:56])
     
         self.tx_ctrl_data_signal_.emit(_data)
 
@@ -262,7 +272,7 @@ class MainWindow(myFluentWindow):
         self.navigationInterface.setMenuButtonVisible(False)        # 菜单按钮不可见
 
     def initWindow(self):
-        self.resize(1650, 800)
+        self.resize(1650, 870)
         self.setWindowIcon(QIcon("resource/img/glazer_icon.png"))
         self.setWindowTitle("GLAZER-DEBUG TOOL")
         desktop = QApplication.desktop().availableGeometry()

@@ -34,6 +34,11 @@ class ControllerInterface(Ui_Controller, QWidget):
         self.send_ice_door_open_door_ = False
         self.send_ice_door_close_door_ = False
         self.send_put_down_ice_flag_ = False
+        self.send_ref_valve_reset_flag_ = False
+        self.send_ref_valve_to_ice_make_ = False
+        self.send_ref_valve_to_store_ = False
+        self.send_store_fan_en_ = False
+        self.send_store_heating_en_ = False
         self.timer_init()
         self.moudle_init()
 
@@ -177,6 +182,42 @@ class ControllerInterface(Ui_Controller, QWidget):
         self.send_put_down_ice_flag_ = True if isChecked else False
 
 
+        # self.send_ref_valve_reset_flag_ = False
+        # self.send_ref_valve_to_ice_make_ = False
+        # self.send_ref_valve_to_store_ = False
+        # self.send_store_fan_en_ = False
+        # self.send_store_heating_en_ = False
+    """ 切换阀回调 """
+    def ref_valve_reset_cb(self):
+        self.send_ref_valve_reset_flag_ = True
+        self.start_timer('reset_ref_valve_reset_cb',500)
+        
+    def reset_ref_valve_reset_cb(self):
+        self.send_ref_valve_reset_flag_ = False
+        
+        
+    def ref_valve_to_make_cb(self):
+        self.send_ref_valve_to_ice_make_ = True
+        self.start_timer('reset_ref_valve_to_make_cb',500)
+      
+    def reset_ref_valve_to_make_cb(self):
+        self.send_ref_valve_to_ice_make_ = False  
+        
+    def ref_valve_to_store_cb(self):
+        self.send_ref_valve_to_store_ = True
+        self.start_timer('reset_ref_valve_to_store_cb',500)
+        
+    def reset_ref_valve_to_store_cb(self):
+        self.send_ref_valve_to_store_ = False  
+        
+    """ 风冷回调 """
+    def store_fan_switch_cb(self, isChecked):
+        self.send_store_fan_en_ = True if isChecked else False
+        
+    def store_heating_switch_cb(self, isChecked):
+        self.send_store_heating_en_ = True if isChecked else False
+        
+
     def moudle_init(self):
         """  初始化压缩机配置   """
         self.comprosser_en_button.setChecked(False)
@@ -244,6 +285,15 @@ class ControllerInterface(Ui_Controller, QWidget):
 
         self.put_down_line_button.setChecked(False)
         self.put_down_line_button.checkedChanged.connect(self.put_down_ice_motor_cb)
+
+        """ 初始化切换阀 """
+        self.ref_valve_reset_button.clicked.connect(self.ref_valve_reset_cb)
+        self.ref_valve_to_make_button.clicked.connect(self.ref_valve_to_make_cb)
+        self.ref_valve_to_store_button.clicked.connect(self.ref_valve_to_store_cb)
+
+        """ 初始化风冷配件 """
+        self.store_fan_switch.checkedChanged.connect(self.store_fan_switch_cb)
+        self.store_heating_switch.checkedChanged.connect(self.store_heating_switch_cb)
 
 
 

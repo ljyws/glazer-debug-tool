@@ -19,11 +19,264 @@
      <x>10</x>
      <y>10</y>
      <width>1481</width>
-     <height>721</height>
+     <height>791</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="GroupHeaderCardWidget" name="groupBox">
+      <property name="title">
+       <string>简易控制区</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>8</x>
+         <y>24</y>
+         <width>721</width>
+         <height>161</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="StrongBodyLabel" name="label">
+            <property name="text">
+             <string>压缩机</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="comprosser_en_button">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Slider" name="comprosser_duty">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="StrongBodyLabel" name="comprosser_duty_label">
+            <property name="text">
+             <string>压缩机占空比</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="StrongBodyLabel" name="label_2">
+            <property name="text">
+             <string>冷凝器</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="condenser_en_button">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Slider" name="condenser_duty">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="StrongBodyLabel" name="condenser_duty_label">
+            <property name="text">
+             <string>冷凝器占空比</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="StrongBodyLabel" name="label_3">
+            <property name="text">
+             <string>搅拌电机</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="stir_motor_button">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Slider" name="stir_motor_duty">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="StrongBodyLabel" name="stir_duty_label">
+            <property name="text">
+             <string>搅拌电机转速</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
     <item row="2" column="0">
+     <widget class="GroupHeaderCardWidget" name="groupBox_2">
+      <property name="title">
+       <string>加热膜控制区</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>721</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="StrongBodyLabel" name="label_9">
+            <property name="text">
+             <string>抬升加热膜</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="lift_pi_en_button">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="StrongBodyLabel" name="label_10">
+            <property name="text">
+             <string>掉冰加热膜</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="drop_pi_en_button">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="StrongBodyLabel" name="label_11">
+            <property name="text">
+             <string>球冰加热膜</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="ball_pi_en_button">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="3" column="0">
      <widget class="GroupHeaderCardWidget" name="groupBox_4">
       <property name="title">
        <string>水路控制区</string>
@@ -110,6 +363,90 @@
       </widget>
      </widget>
     </item>
+    <item row="3" column="1">
+     <widget class="GroupHeaderCardWidget" name="groupBox_7">
+      <property name="title">
+       <string>风冷控制区</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>721</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_19">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_22">
+          <item>
+           <widget class="StrongBodyLabel" name="label_12">
+            <property name="text">
+             <string>风冷风机</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="store_fan_switch">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_23">
+          <item>
+           <widget class="StrongBodyLabel" name="label_13">
+            <property name="text">
+             <string>除霜加热</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="SwitchButton" name="store_heating_switch">
+            <property name="text">
+             <string>Off</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_24"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
     <item row="0" column="1" rowspan="3">
      <widget class="GroupHeaderCardWidget" name="groupBox_3">
       <property name="title">
@@ -121,7 +458,7 @@
          <x>10</x>
          <y>50</y>
          <width>511</width>
-         <height>661</height>
+         <height>561</height>
         </rect>
        </property>
        <property name="title">
@@ -131,7 +468,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>70</y>
+          <y>30</y>
           <width>501</width>
           <height>470</height>
          </rect>
@@ -380,7 +717,7 @@ p, li { white-space: pre-wrap; }
          <x>530</x>
          <y>50</y>
          <width>201</width>
-         <height>661</height>
+         <height>561</height>
         </rect>
        </property>
        <property name="title">
@@ -390,7 +727,7 @@ p, li { white-space: pre-wrap; }
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>70</y>
+          <y>30</y>
           <width>169</width>
           <height>241</height>
          </rect>
@@ -504,197 +841,39 @@ p, li { white-space: pre-wrap; }
       </widget>
      </widget>
     </item>
-    <item row="0" column="0">
-     <widget class="GroupHeaderCardWidget" name="groupBox">
-      <property name="title">
-       <string>简易控制区</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>8</x>
-         <y>24</y>
-         <width>721</width>
-         <height>191</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <spacer name="verticalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="StrongBodyLabel" name="label">
-            <property name="text">
-             <string>压缩机</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="SwitchButton" name="comprosser_en_button">
-            <property name="text">
-             <string>Off</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Slider" name="comprosser_duty">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="StrongBodyLabel" name="comprosser_duty_label">
-            <property name="text">
-             <string>压缩机占空比</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="StrongBodyLabel" name="label_2">
-            <property name="text">
-             <string>冷凝器</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="SwitchButton" name="condenser_en_button">
-            <property name="text">
-             <string>Off</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Slider" name="condenser_duty">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="StrongBodyLabel" name="condenser_duty_label">
-            <property name="text">
-             <string>冷凝器占空比</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="StrongBodyLabel" name="label_3">
-            <property name="text">
-             <string>搅拌电机</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="SwitchButton" name="stir_motor_button">
-            <property name="text">
-             <string>Off</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Slider" name="stir_motor_duty">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="StrongBodyLabel" name="stir_duty_label">
-            <property name="text">
-             <string>搅拌电机转速</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </item>
     <item row="1" column="0">
-     <widget class="GroupHeaderCardWidget" name="groupBox_2">
+     <widget class="GroupHeaderCardWidget" name="groupBox_8">
       <property name="title">
-       <string>加热膜控制区</string>
+       <string>切换阀控制区</string>
       </property>
-      <widget class="QWidget" name="layoutWidget_2">
+      <widget class="QWidget" name="layoutWidget_4">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>70</y>
          <width>721</width>
-         <height>131</height>
+         <height>71</height>
         </rect>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <layout class="QHBoxLayout" name="horizontalLayout_25">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <layout class="QHBoxLayout" name="horizontalLayout_26">
           <item>
-           <widget class="StrongBodyLabel" name="label_9">
+           <widget class="PushButton" name="ref_valve_reset_button">
             <property name="text">
-             <string>抬升加热膜</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="SwitchButton" name="lift_pi_en_button">
-            <property name="text">
-             <string>Off</string>
+             <string>切换阀复位</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
         <item>
-         <spacer name="horizontalSpacer">
+         <spacer name="horizontalSpacer_5">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -705,27 +884,23 @@ p, li { white-space: pre-wrap; }
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <layout class="QHBoxLayout" name="horizontalLayout_27">
           <item>
-           <widget class="StrongBodyLabel" name="label_10">
+           <widget class="PushButton" name="ref_valve_to_make_button">
             <property name="text">
-             <string>掉冰加热膜</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="SwitchButton" name="drop_pi_en_button">
-            <property name="text">
-             <string>Off</string>
+             <string>切到制冰回路</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
         <item>
-         <spacer name="horizontalSpacer_2">
+         <spacer name="horizontalSpacer_6">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -736,20 +911,17 @@ p, li { white-space: pre-wrap; }
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <layout class="QHBoxLayout" name="horizontalLayout_28">
           <item>
-           <widget class="StrongBodyLabel" name="label_11">
-            <property name="text">
-             <string>球冰加热膜</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="SwitchButton" name="ball_pi_en_button">
-            <property name="text">
-             <string>Off</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_29">
+            <item>
+             <widget class="PushButton" name="ref_valve_to_store_button">
+              <property name="text">
+               <string>切到纯风冷回路</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
