@@ -13,17 +13,18 @@ class ControllerInterface(Ui_Controller, QWidget):
         self.setupUi(self)
 
         self.send_comprosser_en_ = False
-        self.send_comprosser_duty_ = 0
+        self.send_comprosser_duty_ = self.comprosser_duty.value()
         self.send_condenser_en_ = False
-        self.send_condenser_duty_ = 0
+        self.send_condenser_duty_ = self.condenser_duty.value()
         self.send_stir_motor_en_ = False
-        self.send_stir_motor_duty_ = 0
+        self.send_stir_motor_duty_ = self.stir_motor_duty.value()
         self.send_lift_pi_en_ = False
         self.send_drop_pi_en_ = False
         self.send_ball_pi_en_ = False
         self.send_from_tank_en_ = False
         self.send_to_tank_en_ = False
         self.send_lift_motor_reset_flag_ = False
+        self.send_lift_motor_send_flag_ = False
         self.send_lift_motor_current_pos_val_ = 0
         self.send_lift_motor_set_pos_val_ = 0
         self.send_lift_to_big_cube_pos_ = False
@@ -117,8 +118,16 @@ class ControllerInterface(Ui_Controller, QWidget):
         text =  self.lift_motor_set_pos_val.text().strip()
         if text.isdigit():
             number = int(text)
-            if number > 0:
-                self.send_lift_motor_set_pos_val_ = number
+            if(number>100):
+                self.lift_motor_set_pos_val.clear()
+            else:
+                if number >= 0:
+                    self.send_lift_motor_send_flag_ = True
+                    self.start_timer('reset_lift_motor_send_flag_cb',500)
+                    self.send_lift_motor_set_pos_val_ = number
+
+    def reset_lift_motor_send_flag_cb(self):
+        self.send_lift_motor_send_flag_ = False
 
     def lift_motor_send_to_big_cube_cb(self):
         self.send_lift_motor_reset_flag_ = True
@@ -188,7 +197,7 @@ class ControllerInterface(Ui_Controller, QWidget):
         """  初始化搅拌电机配置   """ 
         self.stir_motor_button.setChecked(False)
         self.stir_motor_button.checkedChanged.connect(self.stir_motor_en_button_cb)
-        self.stir_motor_duty.setRange(0, 30)
+        self.stir_motor_duty.setRange(0, 50)
         self.stir_motor_duty.setValue(25)
         self.stir_duty_label.setText(str(self.stir_motor_duty.value())+'%')
         self.stir_motor_duty.valueChanged.connect(self.stir_motor_duty_cb)
@@ -210,12 +219,11 @@ class ControllerInterface(Ui_Controller, QWidget):
 
         """  初始抬升控制配置   """
         self.lift_motor_reset_button.setIcon(FIF.VPN)
-        # self.lift_motor_reset_button.pressed.connect(self.lift_motor_reset_press_cb)
-        # self.lift_motor_reset_button.released.connect(self.lift_motor_reset_relese_cb)
         self.lift_motor_reset_button.clicked.connect(self.lift_motor_reset_cb)
 
-        self.lift_motor_set_pos_val.setValidator(QIntValidator(0,799999))
+        self.lift_motor_set_pos_val.setValidator(QIntValidator(0,100))
         self.lift_motor_set_pos_val.setPlaceholderText("输入升降位置，参考看旁边提示框")
+        self.lift_motor_set_pos_val.returnPressed.connect(self.lift_motor_set_send_pos_cb)
         self.lift_motor_set_button.clicked.connect(self.lift_motor_set_send_pos_cb)
 
         self.to_big_cube_pos_button.setIcon(FIF.EMBED)

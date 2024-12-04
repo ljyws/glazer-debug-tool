@@ -32,7 +32,7 @@ class SerialThread(QThread):
         self.glazer_serial.parity = serial.PARITY_NONE
         self.glazer_serial.stopbits = serial.STOPBITS_ONE
 
-        self.tx_data_ = bytearray(45)
+        self.tx_data_ = bytearray(47)
 
 
     def run(self):
@@ -41,9 +41,7 @@ class SerialThread(QThread):
         while self.start_run_:
             if self.glazer_serial.is_open:
                 self.glazer_serial.write(self.tx_data_)
-
-                print(bytes(self.tx_data_))
-                time.sleep(0.01)
+                time.sleep(0.1)
 
     def open(self):
         if self.glazer_serial.port is not None:  # 检查串口号是否设置
@@ -201,7 +199,7 @@ class MainWindow(myFluentWindow):
 
     def update_send_data_(self):
         
-        _data = bytearray(45)
+        _data = bytearray(47)
 
         _data[0]  = 0xAA
         _data[1]  = 0xBB
@@ -232,22 +230,24 @@ class MainWindow(myFluentWindow):
         _data[26] = 0xB4
         _data[27] = int(self.controller_interface.send_lift_motor_set_pos_val_)
         _data[28] = 0xB5
-        _data[29] = int(self.controller_interface.send_lift_to_big_cube_pos_)
+        _data[29] = int(self.controller_interface.send_lift_motor_send_flag_)
         _data[30] = 0xB6
-        _data[31] = int(self.controller_interface.send_lift_to_small_cube_pos_)
+        _data[31] = int(self.controller_interface.send_lift_to_big_cube_pos_)
         _data[32] = 0xB7
-        _data[33] = int(self.controller_interface.send_lift_to_ball_pos_)
+        _data[33] = int(self.controller_interface.send_lift_to_small_cube_pos_)
         _data[34] = 0xB8
-        _data[35] = int(self.controller_interface.send_ice_door_reset_flag_)
+        _data[35] = int(self.controller_interface.send_lift_to_ball_pos_)
         _data[36] = 0xB9
-        _data[37] = int(self.controller_interface.send_ice_door_open_door_)
+        _data[37] = int(self.controller_interface.send_ice_door_reset_flag_)
         _data[38] = 0xC1
-        _data[39] = int(self.controller_interface.send_ice_door_close_door_)
+        _data[39] = int(self.controller_interface.send_ice_door_open_door_)
         _data[40] = 0xC2
-        _data[41] = int(self.controller_interface.send_put_down_ice_flag_)
-        _data[42] = 0xCC
-        _data[43] = 0xDD
-        _data[44] = self.tx_data_crc_.crc8_checksum_get(_data[:44])
+        _data[41] = int(self.controller_interface.send_ice_door_close_door_)
+        _data[42] = 0xC3
+        _data[43] = int(self.controller_interface.send_put_down_ice_flag_)
+        _data[44] = 0xCC
+        _data[45] = 0xDD
+        _data[46] = self.tx_data_crc_.crc8_checksum_get(_data[:46])
     
         self.tx_ctrl_data_signal_.emit(_data)
 
@@ -262,7 +262,7 @@ class MainWindow(myFluentWindow):
         self.navigationInterface.setMenuButtonVisible(False)        # 菜单按钮不可见
 
     def initWindow(self):
-        self.setFixedSize(1650, 800)
+        self.resize(1650, 800)
         self.setWindowIcon(QIcon("resource/img/glazer_icon.png"))
         self.setWindowTitle("GLAZER-DEBUG TOOL")
         desktop = QApplication.desktop().availableGeometry()
