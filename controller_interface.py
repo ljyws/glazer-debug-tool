@@ -128,7 +128,7 @@ class ControllerInterface(Ui_Controller, QWidget):
             else:
                 if number >= 0:
                     self.send_lift_motor_send_flag_ = True
-                    self.start_timer('reset_lift_motor_send_flag_cb',500)
+                    self.start_timer('reset_lift_motor_send_flag_cb',1000)
                     self.send_lift_motor_set_pos_val_ = number
 
     def reset_lift_motor_send_flag_cb(self):
@@ -136,28 +136,28 @@ class ControllerInterface(Ui_Controller, QWidget):
 
     def lift_motor_send_to_big_cube_cb(self):
         self.send_lift_motor_reset_flag_ = True
-        self.start_timer('reset_lift_motor_send_to_big_cube_cb',500)
+        self.start_timer('reset_lift_motor_send_to_big_cube_cb',1000)
 
     def reset_lift_motor_send_to_big_cube_cb(self):
         self.send_lift_motor_reset_flag_ = False
 
     def lift_motor_send_to_small_cube_cb(self):
         self.send_lift_to_small_cube_pos_ = True
-        self.start_timer('reset_lift_motor_send_to_small_cube_cb',500)
+        self.start_timer('reset_lift_motor_send_to_small_cube_cb',1000)
 
     def reset_lift_motor_send_to_small_cube_cb(self):
         self.send_lift_to_small_cube_pos_ = False
 
     def lift_motor_send_to_ball_pos_cb(self):
         self.send_lift_to_ball_pos_ = True
-        self.start_timer('reset_lift_motor_send_to_ball_cb',500)
+        self.start_timer('reset_lift_motor_send_to_ball_cb',1000)
 
     def reset_lift_motor_send_to_ball_cb(self):
         self.send_lift_to_ball_pos_ = False
         
     def ice_door_reset_cb(self):
         self.send_ice_door_reset_flag_ = True
-        self.start_timer('reset_ice_door_reset_cb',500)
+        self.start_timer('reset_ice_door_reset_cb',1000)
 
     def reset_ice_door_reset_cb(self):
         self.send_ice_door_reset_flag_ = False
@@ -165,7 +165,7 @@ class ControllerInterface(Ui_Controller, QWidget):
 
     def ice_door_set_open_door_cb(self):
         self.send_ice_door_open_door_ = True
-        self.start_timer('reset_ice_door_set_open_door_cb',500)
+        self.start_timer('reset_ice_door_set_open_door_cb',1000)
 
     def reset_ice_door_set_open_door_cb(self):
         self.send_ice_door_open_door_ = False
@@ -173,7 +173,7 @@ class ControllerInterface(Ui_Controller, QWidget):
 
     def ice_door_set_close_door_cb(self):
         self.send_ice_door_close_door_ = True
-        self.start_timer('reset_ice_door_set_close_door_cb',500)
+        self.start_timer('reset_ice_door_set_close_door_cb',1000)
 
     def reset_ice_door_set_close_door_cb(self):
         self.send_ice_door_close_door_ = False
@@ -181,16 +181,10 @@ class ControllerInterface(Ui_Controller, QWidget):
     def put_down_ice_motor_cb(self,isChecked):
         self.send_put_down_ice_flag_ = True if isChecked else False
 
-
-        # self.send_ref_valve_reset_flag_ = False
-        # self.send_ref_valve_to_ice_make_ = False
-        # self.send_ref_valve_to_store_ = False
-        # self.send_store_fan_en_ = False
-        # self.send_store_heating_en_ = False
     """ 切换阀回调 """
     def ref_valve_reset_cb(self):
         self.send_ref_valve_reset_flag_ = True
-        self.start_timer('reset_ref_valve_reset_cb',500)
+        self.start_timer('reset_ref_valve_reset_cb',1000)
         
     def reset_ref_valve_reset_cb(self):
         self.send_ref_valve_reset_flag_ = False
@@ -198,14 +192,14 @@ class ControllerInterface(Ui_Controller, QWidget):
         
     def ref_valve_to_make_cb(self):
         self.send_ref_valve_to_ice_make_ = True
-        self.start_timer('reset_ref_valve_to_make_cb',500)
+        self.start_timer('reset_ref_valve_to_make_cb',1000)
       
     def reset_ref_valve_to_make_cb(self):
         self.send_ref_valve_to_ice_make_ = False  
         
     def ref_valve_to_store_cb(self):
         self.send_ref_valve_to_store_ = True
-        self.start_timer('reset_ref_valve_to_store_cb',500)
+        self.start_timer('reset_ref_valve_to_store_cb',1000)
         
     def reset_ref_valve_to_store_cb(self):
         self.send_ref_valve_to_store_ = False  

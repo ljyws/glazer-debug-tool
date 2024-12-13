@@ -27,7 +27,7 @@ class SerialThread(QThread):
         self.start_run_ = False
         self.glazer_serial = serial.Serial()
         self.glazer_serial.port = None
-        self.glazer_serial.baudrate = "115200"
+        self.glazer_serial.baudrate = "921600"
         self.glazer_serial.bytesize = serial.EIGHTBITS
         self.glazer_serial.parity = serial.PARITY_NONE
         self.glazer_serial.stopbits = serial.STOPBITS_ONE
